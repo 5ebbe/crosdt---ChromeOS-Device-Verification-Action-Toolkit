@@ -1,5 +1,5 @@
 # ChromeOS Device Verification & Action Toolkit
-# 2026-08-08, v.1.0 by Sebastian Bergstroem, https://github.com/5ebbe
+2026-08-08, v.1.0 by Sebastian Bergstroem, https://github.com/5ebbe
 
 Two Bash scripts that use [GAM7](https://github.com/GAM-team/GAM) to manage the
 lifecycle of ChromeOS devices in a Google Workspace domain, driven entirely by a
