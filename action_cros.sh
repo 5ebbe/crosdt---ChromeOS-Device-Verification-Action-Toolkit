@@ -76,7 +76,7 @@ fi
 RED=$'\033[1;31m'
 RESET=$'\033[0m'
 
-echo "action_cros.sh v.1.0 By Sebastian Bergstroem, https://github.com/5ebbe
+echo "action_cros.sh v.1.0 By Sebastian Bergstroem, https://github.com/5ebbe"
 echo
 echo "Please see readme.txt for documentation."
 
