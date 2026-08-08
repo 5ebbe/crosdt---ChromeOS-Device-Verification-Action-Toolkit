@@ -1,3 +1,4 @@
+  GNU nano 5.6.1                                                                                                                                              action_cros.sh                                                                                                                                                        
 #!/bin/bash
 
 # action_cros.sh v.1.0
@@ -77,8 +78,11 @@ RED=$'\033[1;31m'
 RESET=$'\033[0m'
 
 echo "action_cros.sh v.1.0 By Sebastian Bergstroem, https://github.com/5ebbe"
+echo "Reads verified_sn (serialNumber + exactMatchDeviceIds) from the GSheet and,"
+echo "per config, disables or deprovisions each device, then optionally moves every"
+echo "device in the sheet to a target OU."
 echo
-echo "Please see readme.txt for documentation."
+echo "Please see README.md for documentation."
 
 # ---------------------------------------------------------------------------
 # PRE-FLIGHT: show exactly what will happen, using config values only, and
@@ -322,8 +326,11 @@ if [ "$ACTION" != "none" ]; then
             enable)
                 $GAMCMD update cros "$LINE_DID" action reenable 2>> "$LOGFILE" ;;
             deprovision)
+                # Single-device deprovision: acknowledge_device_touch_requirement
+                # is required for deprovision actions. No per-device limit flag is
+                # needed since we act on exactly one device per call.
                 $GAMCMD update cros "$LINE_DID" action "$DEPROV_ACTION" \
-                    acknowledge_device_touch_requirement maxtodeprov "$NUM_DEVICES" 2>> "$LOGFILE" ;;
+                    acknowledge_device_touch_requirement 2>> "$LOGFILE" ;;
         esac
         ACTED=$((ACTED+1))
     done < <(awk -F',' -v d="$DID_COL" -v s="$ST_COL" 'NR>1 && $d!="" {print $d","$s}' "$BEFORE")
